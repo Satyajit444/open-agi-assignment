@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback } from "react";
 import {
   ReactFlow,
   ReactFlowProvider,
@@ -7,19 +7,19 @@ import {
   useEdgesState,
   Controls,
   useReactFlow,
-} from '@xyflow/react';
-import '@xyflow/react/dist/style.css';
+} from "@xyflow/react";
+import "@xyflow/react/dist/style.css";
 
-import Sidebar from './Sidebar';
-import { DnDProvider, useDnD } from './DndContext';
+import Sidebar from "./Sidebar";
+import { DnDProvider, useDnD } from "./DndContext";
 
-import './index.css';
+import "./index.css";
 
 const initialNodes = [
   {
-    id: '1',
-    type: 'input',
-    data: { label: 'input node' },
+    id: "1",
+    type: "input",
+    data: { label: "input node" },
     position: { x: 250, y: 5 },
   },
 ];
@@ -34,32 +34,42 @@ const DnDFlow = () => {
   const { screenToFlowPosition } = useReactFlow();
   const [type] = useDnD();
 
-  const onConnect = useCallback(
-    (params) => setEdges((eds) => addEdge(params, eds)),
-    [],
-  );
+  // Logs the type for debugging
+  console.log("Current node type being dragged:", type);
 
-  const onDragOver = useCallback((event) => {
-    event.preventDefault();
-    event.dataTransfer.dropEffect = 'move';
+  // onConnect to handle adding edges
+  const onConnect = useCallback((params) => {
+    console.log("Edge connected:", params);
+    setEdges((eds) => addEdge(params, eds));
   }, []);
 
+  // onDragOver to allow dropping nodes
+  const onDragOver = useCallback((event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
+    console.log("Dragging over flow area");
+  }, []);
+
+  // onDrop to handle dropped node creation
   const onDrop = useCallback(
     (event) => {
       event.preventDefault();
+      console.log("Drop event detected");
 
-      // check if the dropped element is valid
+      // Check if valid type is being dragged
       if (!type) {
+        console.warn("No type provided, cannot drop node");
         return;
       }
 
-      // project was renamed to screenToFlowPosition
-      // and you don't need to subtract the reactFlowBounds.left/top anymore
-      // details: https://reactflow.dev/whats-new/2023-11-10
+      // Calculate position and create new node
       const position = screenToFlowPosition({
         x: event.clientX,
         y: event.clientY,
       });
+
+      console.log("Drop position:", position);
+
       const newNode = {
         id: getId(),
         type,
@@ -67,14 +77,17 @@ const DnDFlow = () => {
         data: { label: `${type} node` },
       };
 
+      console.log("New node created:", newNode);
+
+      // Add new node to nodes state
       setNodes((nds) => nds.concat(newNode));
     },
-    [screenToFlowPosition, type],
+    [screenToFlowPosition, type]
   );
 
   return (
     <div className="dndflow">
-      <div className="reactflow-wrapper" ref={reactFlowWrapper}>
+      <div  style={{ width: '100vw', height: '100vh' }} ref={reactFlowWrapper}>
         <ReactFlow
           nodes={nodes}
           edges={edges}
