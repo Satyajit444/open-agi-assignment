@@ -11,7 +11,7 @@ import {
 import '@xyflow/react/dist/style.css';
 
 import Sidebar from './Sidebar';
-import { DnDProvider, useDnD } from './DnDContext';
+import { DnDProvider, useDnD } from './DndContext';
 
 import './index.css';
 
