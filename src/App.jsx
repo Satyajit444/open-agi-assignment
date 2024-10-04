@@ -78,8 +78,6 @@ const DnDFlow = () => {
         },
       };
 
-      console.log("New node created:", newNode);
-
       // Add new node to nodes state
       setNodes((nds) => nds.concat(newNode));
     },
