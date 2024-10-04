@@ -17,7 +17,7 @@ const Output = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Output Response:</label>
-          <input
+          <textarea
             type="text"
             id="name"
             name="name"

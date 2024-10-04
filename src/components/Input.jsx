@@ -16,7 +16,6 @@ const Input = () => {
       <h2>INPUT</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Input</label>
           <input
             type="text"
             id="name"
