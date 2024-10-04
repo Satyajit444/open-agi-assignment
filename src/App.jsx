@@ -7,35 +7,26 @@ import {
   useEdgesState,
   Controls,
   useReactFlow,
+  Background,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-
-import Sidebar from "./Sidebar";
-import { DnDProvider, useDnD } from "./DndContext";
-
 import "./index.css";
 
-const initialNodes = [
-  {
-    id: "1",
-    type: "input",
-    data: { label: "input node" },
-    position: { x: 250, y: 5 },
-  },
-];
+import Sidebar from "./Sidebar";
+import Input from "./components/Input";
+import Output from "./components/Output";
+import LLMEngine from "./components/LLMEngine";
+import { DnDProvider, useDnD } from "./DndContext";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 
 const DnDFlow = () => {
   const reactFlowWrapper = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { screenToFlowPosition } = useReactFlow();
   const [type] = useDnD();
-
-  // Logs the type for debugging
-  console.log("Current node type being dragged:", type);
 
   // onConnect to handle adding edges
   const onConnect = useCallback((params) => {
@@ -58,7 +49,6 @@ const DnDFlow = () => {
 
       // Check if valid type is being dragged
       if (!type) {
-        console.warn("No type provided, cannot drop node");
         return;
       }
 
@@ -74,7 +64,17 @@ const DnDFlow = () => {
         id: getId(),
         type,
         position,
-        data: { label: `${type} node` },
+        data: {
+          label: (() => {
+            if (type === "input") {
+              return <Input />;
+            } else if (type === "output") {
+              return <Output />;
+            } else {
+              return <LLMEngine />;
+            }
+          })(),
+        },
       };
 
       console.log("New node created:", newNode);
@@ -87,7 +87,8 @@ const DnDFlow = () => {
 
   return (
     <div className="dndflow">
-      <div  style={{ width: '100vw', height: '100vh' }} ref={reactFlowWrapper}>
+      <Sidebar />
+      <div style={{ width: "100vw", height: "100vh" }} ref={reactFlowWrapper}>
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -99,9 +100,9 @@ const DnDFlow = () => {
           fitView
         >
           <Controls />
+          <Background />
         </ReactFlow>
       </div>
-      <Sidebar />
     </div>
   );
 };
