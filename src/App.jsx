@@ -18,11 +18,12 @@ import Output from "./components/Output";
 import LLMEngine from "./components/LLMEngine";
 import { DnDProvider, useDnD } from "./components/context/DndContext";
 import Sidebar from "./components/shared/Sidebar";
+import Navbar from "./components/shared/Navbar";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 
-const DnDFlow = () => {
+const App = () => {
   const reactFlowWrapper = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
@@ -86,22 +87,25 @@ const DnDFlow = () => {
 
   return (
     <div className="dndflow">
-      <Sidebar />
-      <div style={{ width: "100vw", height: "100vh" }} ref={reactFlowWrapper}>
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          onDrop={onDrop}
-          onDragOver={onDragOver}
-          fitView
-        >
-          <Controls />
-          <Background />
-          <MiniMap />
-        </ReactFlow>
+      <Navbar />
+      <div className="mt-20 dndflow">
+        <Sidebar />
+        <div style={{ width: "100vw", height: "100vh" }} ref={reactFlowWrapper}>
+          <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+            onDrop={onDrop}
+            onDragOver={onDragOver}
+            fitView
+          >
+            <Controls />
+            <Background />
+            <MiniMap />
+          </ReactFlow>
+        </div>
       </div>
     </div>
   );
@@ -110,7 +114,7 @@ const DnDFlow = () => {
 export default () => (
   <ReactFlowProvider>
     <DnDProvider>
-      <DnDFlow />
+      <App />
     </DnDProvider>
   </ReactFlowProvider>
 );

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .dndflow {
   flex-direction: column;
   display: flex;
@@ -54,4 +58,10 @@
     width: 20%;
     max-width: 250px;
   }
+}
+
+input {
+  border: 1px solid grey;
+  border-radius: 10px;
+  max-width: 100%;
 }
