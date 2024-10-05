@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { getOpenAIResponse } from "./openaiService";
 
 const OpenAIComponent = () => {
   const [input, setInput] = useState("");
@@ -7,12 +6,8 @@ const OpenAIComponent = () => {
   const [history, setHistory] = useState([]);
   const [response, setResponse] = useState("");
 
-  //   const handleSubmit = async (e) => {
-  //     e.preventDefault();
-  //     const aiResponse = await getOpenAIResponse(input);
-  //     console.log("🚀 ~ handleSubmit ~ aiResponse:", aiResponse);
-  //     // setResponse(aiResponse.choices[0].text);
-  //   };
+
+  console.log(process.env.REACT_APP_OPENAI_API_KEY);
   
   const handleSubmit = async (e) => {
     e.preventDefault();
