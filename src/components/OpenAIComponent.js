@@ -13,6 +13,7 @@ const OpenAIComponent = () => {
   //     console.log("🚀 ~ handleSubmit ~ aiResponse:", aiResponse);
   //     // setResponse(aiResponse.choices[0].text);
   //   };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const prompt = {
@@ -25,7 +26,7 @@ const OpenAIComponent = () => {
     await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer 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`,
+        Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -35,9 +36,9 @@ const OpenAIComponent = () => {
     })
       .then((data) => data.json())
       .then((data) => {
-        console.log("🚀 ~ .then ~ data:", data)
+        console.log("🚀 ~ .then ~ data:", data);
         const res = data.choices[0].message.content;
-        console.log("🚀 ~ .then ~ res:", res)
+        console.log("🚀 ~ .then ~ res:", res);
         setMessages((messages) => [
           ...messages,
           {
