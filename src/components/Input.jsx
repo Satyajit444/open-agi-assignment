@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import OpenAIComponent from "./OpenAIComponent";
 
 const Input = () => {
   const [name, setName] = useState("");
@@ -27,6 +28,8 @@ const Input = () => {
           />
         </div>
       </form>
+
+      <OpenAIComponent />
     </div>
   );
 };
