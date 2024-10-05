@@ -1,25 +1,19 @@
 import React, { createContext, useContext, useState } from "react";
 
+// Create the context
 const FormContext = createContext();
 
-export const FormProvider = ({ children }) => {
-  const [prompts, setPrompts] = useState("");
-  const [apiCred, setApiCred] = useState({});
-  const [response, setResponse] = useState({});
+// Hook to use context
+export const useFormContext = () => useContext(FormContext);
 
-  const submitAllForms = () => {
-    if (prompts) console.log("Submitting Form 1 data: ", prompts);
-    if (apiCred) console.log("Submitting Form 2 data: ", apiCred);
-    if (response) console.log("Submitting Form 3 data: ", response);
-  };
+// Provider component
+export const FormProvider = ({ children }) => {
+  const [submitForm, setSubmitForm] = useState(null);
+  console.log("🚀 ~ FormProvider ~ submitForm:", submitForm)
 
   return (
-    <FormContext.Provider
-      value={{ setPrompts, setApiCred, setResponse, submitAllForms }}
-    >
+    <FormContext.Provider value={{ submitForm, setSubmitForm }}>
       {children}
     </FormContext.Provider>
   );
 };
-
-export const useFormContext = () => useContext(FormContext);

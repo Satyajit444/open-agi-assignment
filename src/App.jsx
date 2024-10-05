@@ -19,6 +19,7 @@ import LLMEngine from "./components/LLMEngine";
 import { DnDProvider, useDnD } from "./components/context/DndContext";
 import Sidebar from "./components/shared/Sidebar";
 import Navbar from "./components/shared/Navbar";
+import { FormProvider } from "./components/context/FormContext";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
@@ -112,9 +113,11 @@ const App = () => {
 };
 
 export default () => (
-  <ReactFlowProvider>
-    <DnDProvider>
-      <App />
-    </DnDProvider>
-  </ReactFlowProvider>
+  <FormProvider>
+    <ReactFlowProvider>
+      <DnDProvider>
+        <App />
+      </DnDProvider>
+    </ReactFlowProvider>
+  </FormProvider>
 );
