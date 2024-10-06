@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 const Toast = ({ type, message, duration = 5000, onClose }) => {
-  console.log(type, message);
-
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
