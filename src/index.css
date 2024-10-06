@@ -10,15 +10,19 @@
 }
 
 .dndflow aside {
-  border-right: 1px solid #eee;
-  padding: 15px 10px;
+  /* border-right: 1px solid #eee; */
+  /* padding: 15px 10px; */
   font-size: 12px;
   background: #fcfcfc;
+  /* background: white; */
+  /* background-image: radial-gradient(rgb(151, 148, 148) 1px, transparent 0);
+  background-size: 20px 20px;
+  background-position: -19px -19px; */
 }
 
-.dndflow aside .description {
+/* .dndflow aside .description {
   margin-bottom: 10px;
-}
+} */
 
 .dndflow .dndnode {
   height: 20px;
@@ -32,13 +36,13 @@
   cursor: grab;
 }
 
-.dndflow .dndnode.input {
+/* .dndflow .dndnode.input {
   border-color: #0041d0;
 }
 
 .dndflow .dndnode.output {
   border-color: #ff0072;
-}
+} */
 
 .dndflow .reactflow-wrapper {
   flex-grow: 1;
@@ -59,10 +63,21 @@
     max-width: 250px;
   }
 }
-
-input, textarea {
+.react-flow__node-input,
+.react-flow__node-default,
+.react-flow__node-output,
+.react-flow__node-group {
+  padding: 0 !important;
+  box-shadow: 0px 3.8px 63.38px 0px #0000000d !important;
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  border: 1px solid #00000014 !important;
+  width: fit-content !important;
+}
+/* input,
+textarea {
   border: 1px solid grey;
   border-radius: 10px;
   max-width: 100%;
   resize: none;
-}
+} */
