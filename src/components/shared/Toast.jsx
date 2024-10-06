@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import ErrorIcon from "../icons/Error";
 import WarningIcon from "../icons/Warning";
 import SuccessIcon from "../icons/Success";
-import InfoIcon from "../icons/Warning"; // Make sure the path is correct
-import NotificationIcon from "../icons/Success"; // Make sure the path is correct
+import InfoIcon from "../icons/Warning"; 
+import NotificationIcon from "../icons/Success"; 
 
 const Toast = ({ type = "Info", message, duration = 5000, onClose }) => {
   const [progress, setProgress] = useState(0);
@@ -24,14 +24,14 @@ const Toast = ({ type = "Info", message, duration = 5000, onClose }) => {
   }, [duration, onClose]);
 
   const toastStyles = {
-    Error: { icon: <ErrorIcon />, color: "red" },
-    Warning: { icon: <WarningIcon />, color: "orange" },
-    Info: { icon: <InfoIcon />, color: "blue" },
-    Success: { icon: <SuccessIcon />, color: "green" },
-    Notification: { icon: <NotificationIcon />, color: "gray" },
+    error: { icon: <ErrorIcon />, color: "red" },
+    warning: { icon: <WarningIcon />, color: "orange" },
+    info: { icon: <InfoIcon />, color: "blue" },
+    success: { icon: <SuccessIcon />, color: "green" },
+    notification: { icon: <NotificationIcon />, color: "gray" },
   };
 
-  const currentToastStyle = toastStyles[type] || toastStyles.Info; // Fallback to Info if type is not found
+  const currentToastStyle = toastStyles[type] || toastStyles.info; 
 
   return (
     <div

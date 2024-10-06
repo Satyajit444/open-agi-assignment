@@ -115,12 +115,12 @@ const App = () => {
 
 export default () => (
   <ReactFlowProvider>
-    <FormProvider>
-      <ToastProvider>
+    <ToastProvider>
+      <FormProvider>
         <DnDProvider>
           <App />
         </DnDProvider>
-      </ToastProvider>
-    </FormProvider>
+      </FormProvider>
+    </ToastProvider>
   </ReactFlowProvider>
 );

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { useToast } from "./ToastContext";
 
 // Create context
 const FormContext = createContext();
@@ -13,6 +14,7 @@ export const FormProvider = ({ children }) => {
   const [prompt, setPrompt] = useState("");
   console.log("🚀 ~ FormProvider ~ prompt:", prompt);
   const [response, setResponse] = useState("");
+  const { showToast } = useToast();
 
   // Function to validate API credentials
   const validateCreds = () => {
@@ -62,18 +64,27 @@ export const FormProvider = ({ children }) => {
     })
       .then((data) => data.json())
       .then((data) => {
-        console.log("🚀 ~ .then ~ data:", data);
-        const res = data.choices[0].message.content;
-        console.log("🚀 ~ .then ~ res:", res);
-        setMessages((messages) => [
-          ...messages,
-          {
-            role: "assistant",
-            content: res,
-          },
-        ]);
-        setHistory((history) => [...history, { question: input, answer: res }]);
-        setInput("");
+        console.log("🚀 ~ .then ~ data:", data?.error.message);
+        if (data?.error) {
+          showToast({
+            toastType: "error",
+            message: "Please Check the Open AI Key And Try Again",
+          });
+        } else {
+          const res = data.choices[0].message.content;
+          setMessages((messages) => [
+            ...messages,
+            {
+              role: "assistant",
+              content: res,
+            },
+          ]);
+          setHistory((history) => [
+            ...history,
+            { question: input, answer: res },
+          ]);
+          setInput("");
+        }
       });
   };
 
