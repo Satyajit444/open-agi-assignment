@@ -11,7 +11,7 @@ import {
   MiniMap,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import "./index.css";
+// import "./index.css";
 
 import { DnDProvider, useDnD } from "./components/context/DndContext";
 import Sidebar from "./components/shared/Sidebar";
@@ -88,11 +88,11 @@ const App = () => {
   );
 
   return (
-    <div className="dndflow">
+    <div className="overflow-hidden">
       <Navbar />
       <div className="mt-20 dndflow">
         <Sidebar />
-        <div style={{ width: "100vw", height: "100vh" }} ref={reactFlowWrapper}>
+        <div style={{ width: "100vw", height: "90vh" }} ref={reactFlowWrapper}>
           <ReactFlow
             nodes={nodes}
             edges={edges}
