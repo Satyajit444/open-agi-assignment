@@ -2,8 +2,7 @@ import React from "react";
 
 const Error = ({ color, size }) => {
   return (
-    <div>
-      {" "}
+    <div className="rounded-full p-2 border-[1px] border-white">
       <svg
         fill="red"
         className="w-3 h-3"

@@ -1,8 +1,18 @@
 import React from "react";
 import { useDnD } from "../context/DndContext";
+import InputIcon from "../icons/InputIcon";
+import LLMEngineIcon from "../icons/LLMEngineIcon";
+import OutPutIcon from "../icons/OutPutIcon";
+import MenuIcon from "../icons/MenuIcon";
 
-export default () => {
-  const [_, setType] = useDnD();
+const COMPONENTS = [
+  { id: "input", label: "Input", Icon: InputIcon },
+  { id: "default", label: "LLM Engine", Icon: LLMEngineIcon },
+  { id: "output", label: "Output", Icon: OutPutIcon },
+];
+
+export default function Sidebar() {
+  const [, setType] = useDnD();
 
   const onDragStart = (event, nodeType) => {
     setType(nodeType);
@@ -10,29 +20,28 @@ export default () => {
   };
 
   return (
-    <aside>
-      <div className="description">Components</div>
-      <div
-        className="dndnode input"
-        onDragStart={(event) => onDragStart(event, "input")}
-        draggable
-      >
-        Input
-      </div>
-      <div
-        className="dndnode"
-        onDragStart={(event) => onDragStart(event, "default")}
-        draggable
-      >
-        LLM Engine
-      </div>
-      <div
-        className="dndnode output"
-        onDragStart={(event) => onDragStart(event, "output")}
-        draggable
-      >
-        Output
+    <aside className="dotted-background text-base font-medium p-6">
+      <div className="bg-gray-50 h-full w-full p-4 shadow-lg rounded-xl border">
+        <div className="text-lg text-black border-b-[1px] mb-2 pb-2 border-gray-400">
+          Components
+        </div>
+        <div className="mt-4 mb-3 text-sm text-gray-400">Drag and Drop</div>
+
+        {COMPONENTS.map(({ id, label, Icon }) => (
+          <div
+            key={id}
+            className="border-[1.5px] items-center rounded-md border-gray-400 py-1.5 px-2.5 flex justify-between my-5"
+            onDragStart={(event) => onDragStart(event, id)}
+            draggable
+          >
+            <div className="flex gap-2 justify-center items-center">
+              <Icon />
+              {label}
+            </div>
+            <MenuIcon />
+          </div>
+        ))}
       </div>
     </aside>
   );
-};
+}
