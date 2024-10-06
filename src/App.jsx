@@ -20,6 +20,7 @@ import { FormProvider } from "./components/context/FormContext";
 import { Input } from "./components/Input";
 import { Output } from "./components/Output";
 import { LLMEngine } from "./components/LLMEngine";
+import { ToastProvider } from "./components/context/ToastContext";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
@@ -113,11 +114,13 @@ const App = () => {
 };
 
 export default () => (
-  <FormProvider>
-    <ReactFlowProvider>
-      <DnDProvider>
-        <App />
-      </DnDProvider>
-    </ReactFlowProvider>
-  </FormProvider>
+  <ReactFlowProvider>
+    <FormProvider>
+      <ToastProvider>
+        <DnDProvider>
+          <App />
+        </DnDProvider>
+      </ToastProvider>
+    </FormProvider>
+  </ReactFlowProvider>
 );
