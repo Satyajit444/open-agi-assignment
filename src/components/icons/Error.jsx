@@ -1,6 +1,6 @@
 import React from "react";
 
-const Error = ({ color, size }) => {
+const Error = ({ ...props }) => {
   return (
     <div>
       {" "}

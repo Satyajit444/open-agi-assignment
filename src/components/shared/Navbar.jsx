@@ -7,7 +7,7 @@ const Navbar = () => {
   const { showToast } = useToast();
 const handleDeploy =()=>{
   showToast({
-    toastType: "warning",
+    toastType: "success",
     message: "This is a warning message",
   });
 }
