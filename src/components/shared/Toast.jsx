@@ -32,9 +32,10 @@ const Toast = ({ type = "Info", message, title, duration = 5000, onClose }) => {
   };
 
   const currentToastStyle = toastStyles[type];
+  console.log("🚀 ~ Toast ~ currentToastStyle:", currentToastStyle)
   return (
     <div
-      className={`max-w-sm w-full mb-4 rounded-md shadow-lg   bg-white border-${currentToastStyle.color}-500 p-4 relative bg-${currentToastStyle.color}-500`}
+      className={`max-w-sm w-full mb-4 rounded-md shadow-lg bg-white border-${currentToastStyle.color}-500 p-4 relative bg-${currentToastStyle.color}-500`}
     >
       <div className="flex items-start gap-3">
         <div className="mr-2">{currentToastStyle.icon}</div>{" "}

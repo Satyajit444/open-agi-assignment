@@ -30,8 +30,8 @@ export const LLMEngine = () => {
           }
           className="border-[1px] rounded-[4px] w-full border-solid border-[#666666] px-3 py-1 text-sm font-normal focus:outline-none"
         >
-          <option value="">Select model name</option>
-          <option value="gpt-3.5-turbo">GPT-3.5-Turbo</option>
+          <option value="" disabled>Select model name</option>
+          <option value="gpt-3.5-turbo" selected>GPT-3.5-Turbo</option>
           <option value="text-davinci-003">Text-davinci-003</option>
           <option value="gpt-4">GPT-4</option>
           <option value="gpt-3.5-turbo-13b">GPT-3.5-Turbo-13B</option>

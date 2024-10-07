@@ -11,7 +11,6 @@ import {
   MiniMap,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-// import "./index.css";
 
 import { DnDProvider, useDnD } from "./components/context/DndContext";
 import Sidebar from "./components/shared/Sidebar";
@@ -49,8 +48,6 @@ const App = () => {
   const onDrop = useCallback(
     (event) => {
       event.preventDefault();
-      console.log("Drop event detected");
-
       // Check if valid type is being dragged
       if (!type) {
         return;

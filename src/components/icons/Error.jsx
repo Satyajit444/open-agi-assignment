@@ -2,10 +2,9 @@ import React from "react";
 
 const Error = ({ color, size }) => {
   return (
-    <div className="rounded-full p-2 border-[1px] border-white">
+    <div className="rounded-full p-2 border-[1px] border-white bg-red-600 text-white">
       <svg
-        fill="red"
-        className="w-3 h-3"
+        className="w-3 h-3 "
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 14 14"
