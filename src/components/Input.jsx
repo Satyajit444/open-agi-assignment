@@ -17,13 +17,13 @@ export const Input = () => {
       </div>
 
       <div className="px-4 py-2.5 bg-[#EEF4FF] text-[#666666] font-medium text-sm">
-        {"Write the input/ question ypu want to ask"}
+        {"Write the input/ question you want to ask"}
       </div>
       <div className="px-4 pt-2.5 pb-4 flex items-start flex-col">
         <label className="pb-2 text-[#000000] text-sm ">Input</label>
         <input
           type="text"
-          className="border-[1px] rounded-[4px] border-solid border-[#666666] px-3 py-1 text-sm font-normal focus:outline-none"
+          className="w-full border-[1px] rounded-[4px] border-solid border-[#666666] px-3 py-1 text-sm font-normal focus:outline-none"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Type something..."
