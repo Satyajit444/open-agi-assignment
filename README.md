@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# AI-Powered Chat Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the AI-Powered Chat Application! This is a **React-based chat application** that integrates with **OpenAI's GPT-3.5-turbo** model, allowing users to generate intelligent responses to their prompts. The app features a clean and responsive design powered by **TailwindCSS**, utilizes the **Context API** for state management, and includes a dynamic **toast notification** system for feedback and error handling.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+- **User Input:** Submit prompts or questions to the AI model and receive insightful responses.
+- **Response Output:** View generated responses displayed in a well-formatted output box.
+- **Toast Notifications:** Receive real-time feedback through custom toast notifications for errors and status updates.
+- **Context API:** Manage application state seamlessly using React's Context API.
+- **Dynamic Styling:** Toast notifications adapt their styles based on the message type (e.g., error, success).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 💻 Tech Stack
 
-### `npm test`
+- **React:** JavaScript library for building user interfaces.
+- **OpenAI API:** Integration with the GPT-3.5-turbo model to generate AI responses.
+- **TailwindCSS:** Utility-first CSS framework for rapid UI design.
+- **Toast Notifications:** Custom notifications for user feedback.
+- **Context API:** For managing application state effectively.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📦 Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Node.js** (version 14.0.0 or higher)
+- **npm** or **yarn**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Steps
 
-### `npm run eject`
+1. **Clone the Repository:**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   git clone https://github.com/your-repo-name
+   cd your-repo-name
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Usage
+Enter a prompt: Type a question or command in the input field.
+Submit: Click the submit button to send the prompt to OpenAI.
+View response: The GPT-generated response will be displayed in the output section.
+Notifications: Error messages or status updates will be displayed as toast notifications.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Things left to be publish
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Code optimization for UI

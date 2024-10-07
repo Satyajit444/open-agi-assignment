@@ -35,15 +35,28 @@ const Toast = ({ type = "info", message, title, duration = 3000, onClose }) => {
 
   return (
     <div
-      className={`max-w-sm w-full mb-4 rounded-md shadow-lg bg-${currentToastStyle?.color}-500 border-l-4 p-4 relative`}
+      style={{ backgroundColor: currentToastStyle?.color }}
+      className="max-w-sm w-full mb-4 rounded-md shadow-lg p-4 relative text-white overflow-hidden"
     >
+      {/* Progress bar */}
+      <div
+        className="absolute bottom-0 left-0 h-1"
+        style={{
+          width: `${progress}%`,
+          backgroundColor: "rgba(4, 120, 87, 0.5)",
+          transition: "width 0.1s linear",
+        }}
+      ></div>
+
       <div className="flex items-start gap-3">
         <div className="mr-2">{currentToastStyle.icon}</div>
         <div>
-          <p className="text-sm font-semibold text-${currentToastStyle.color}-500">
+          <p
+            className={`text-sm font-semibold text-${currentToastStyle.color}-500`}
+          >
             {title}
           </p>
-          <p className="text-sm text-${currentToastStyle.color}-500">
+          <p className={`text-sm text-${currentToastStyle.color}-500`}>
             {message}
           </p>
         </div>
@@ -64,13 +77,6 @@ const Toast = ({ type = "info", message, title, duration = 3000, onClose }) => {
             />
           </svg>
         </button>
-      </div>
-      {/* Progress bar at the bottom */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-200 rounded-full overflow-hidden">
-        <div
-          className={`h-full bg-${currentToastStyle.color}-500`}
-          style={{ width: `${progress}%`, transition: "width 0.1s linear" }}
-        />
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useToast } from "./ToastContext";
-import OpenAIComponent from "../OpenAIComponent";
 
 // Create context
 const FormContext = createContext();
@@ -22,7 +21,7 @@ export const FormProvider = ({ children }) => {
 
   const { showToast } = useToast();
   const [prompt, setPrompt] = useState("");
-  const [response, setResponse] = useState([]); // Change to array for holding multiple responses
+  const [response, setResponse] = useState([]);
 
   const [res, setRes] = useState("");
   const [messages, setMessages] = useState([]);
@@ -147,7 +146,6 @@ export const FormProvider = ({ children }) => {
         prompt,
         setPrompt,
         response,
-        OpenAIComponent,
         handleNavButtonClick,
         res,
       }}
