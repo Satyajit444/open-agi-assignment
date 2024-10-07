@@ -4,7 +4,7 @@ import OutPutIcon from "./icons/OutPutIcon";
 import DotIcon from "./icons/DotIcon";
 
 export const Output = () => {
-  const { response } = useFormContext();
+  const { res } = useFormContext();
 
   return (
     <div className="rounded-lg shadow-lg min-w-[300px]">
@@ -16,13 +16,14 @@ export const Output = () => {
         <DotIcon />
       </div>
 
-      <div className="px-4 py-2.5 bg-[#EEF4FF] text-[#666666] font-medium text-sm">
-        {"Wait For The Response"}
+      <div className="px-4 py-2.5 bg-[#EEF4FF] text-[#666666] font-medium text-sm text-left">
+        {res ? "Response received" : "Wait For The Response"}
       </div>
+
       <div className="px-4 pt-2.5 pb-4 flex items-start flex-col">
-        <label className="pb-2 text-[#000000] text-sm ">Output Response</label>
+        <label className="pb-2 text-[#000000] text-sm">Output Response</label>
         <textarea
-          value={response}
+          value={res || ""}
           readOnly
           className="w-full min-h-[150px] border-[1px] rounded-[4px] border-solid border-[#666666] px-3 py-1 text-sm font-normal focus:outline-none"
           placeholder="Output response will be shown here"

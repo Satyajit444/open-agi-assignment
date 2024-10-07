@@ -33,9 +33,24 @@ const App = () => {
 
   // onConnect to handle adding edges
   const onConnect = useCallback((params) => {
-    console.log("Edge connected:", params);
-    setEdges((eds) => addEdge(params, eds));
-  }, []);
+    // Find the source and target nodes based on their IDs
+    const sourceNode = nodes.find((node) => node.id === params.source);
+    const targetNode = nodes.find((node) => node.id === params.target);
+  
+    // Validate connections: input -> LLM, and LLM -> output
+    if (
+      (sourceNode.type === "input" && targetNode.type === "default") || // input can connect to default
+      (sourceNode.type === "default" && targetNode.type === "output") // llm can connect to output
+    ) {
+      // Valid connection, add the edge
+      console.log("Valid Edge connected:", params);
+      setEdges((eds) => addEdge(params, eds));
+    } else {
+      // Invalid connection, block the edge
+      console.log("Invalid Edge blocked:", params);
+    }
+  }, [nodes]);
+  
 
   // onDragOver to allow dropping nodes
   const onDragOver = useCallback((event) => {

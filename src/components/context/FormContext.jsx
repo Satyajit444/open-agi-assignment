@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { useToast } from "./ToastContext";
 import OpenAIComponent from "../OpenAIComponent";
 
@@ -20,27 +20,13 @@ export const FormProvider = ({ children }) => {
     temperature: "",
   });
 
-
   const { showToast } = useToast();
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState([]); // Change to array for holding multiple responses
 
+  const [res, setRes] = useState("");
   const [messages, setMessages] = useState([]);
   const [history, setHistory] = useState([]);
-
-  // Function to handle prompt submission
-  const submitPrompt = () => {
-    if (prompt) {
-      setResponse((prevResponses) => [
-        ...prevResponses,
-        "This is the response from OpenAI based on your prompt.",
-      ]);
-      return true;
-    } else {
-      alert("Please enter a prompt.");
-      return false;
-    }
-  };
 
   const checkValidation = () => {
     if (!prompt) {
@@ -92,8 +78,6 @@ export const FormProvider = ({ children }) => {
       content: prompt,
     };
 
-    setMessages([...messages, promptInput]);
-
     try {
       const response = await fetch(
         "https://api.openai.com/v1/chat/completions",
@@ -112,28 +96,26 @@ export const FormProvider = ({ children }) => {
 
       const data = await response.json();
       if (data?.error) {
-        const errorMessage = data?.error.message || "Please Check the OpenAI Key And Try Again";
+        const errorMessage =
+          data?.error.message || "Please Check the OpenAI Key And Try Again";
         const limitedMessage = errorMessage.split(" ").slice(0, 15).join(" ");
         showToast({
           toastType: "error",
-          message: errorMessage.split(" ").length > 15 ? `${limitedMessage}...` : errorMessage,
+          message:
+            errorMessage.split(" ").length > 15
+              ? `${limitedMessage}...`
+              : errorMessage,
         });
-        
       } else {
-        const res = data.choices[0]?.message?.content || "";
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          {
-            role: "assistant",
-            content: res,
-          },
-        ]);
+        const resContent = data.choices[0]?.message?.content || "";
+        console.log("🚀 ~ handleSubmit ~ resContent:", resContent);
+        setRes(resContent); 
         setHistory((prevHistory) => [
           ...prevHistory,
-          { question: prompt, answer: res },
+          { question: prompt, answer: resContent },
         ]);
-        setPrompt("");
       }
+      setPrompt("");
     } catch (error) {
       console.error("Error fetching from OpenAI:", error);
       showToast({
@@ -157,7 +139,6 @@ export const FormProvider = ({ children }) => {
         setApiKey,
         apiSecret,
         setApiSecret,
-
         llmEngineData,
         setLlmEngineData,
         prompt,
@@ -165,6 +146,7 @@ export const FormProvider = ({ children }) => {
         response,
         OpenAIComponent,
         handleNavButtonClick,
+        res,
       }}
     >
       {children}
