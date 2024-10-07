@@ -20,23 +20,17 @@ export const FormProvider = ({ children }) => {
     temperature: "",
   });
 
+
+  const { showToast } = useToast();
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState([]); // Change to array for holding multiple responses
-  const { showToast } = useToast();
 
-  const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [history, setHistory] = useState([]);
-
-  // Function to validate API credentials
-  const validateCreds = () => {
-    return apiKey && apiSecret;
-  };
 
   // Function to handle prompt submission
   const submitPrompt = () => {
     if (prompt) {
-      console.log("Prompt submitted:", prompt);
       setResponse((prevResponses) => [
         ...prevResponses,
         "This is the response from OpenAI based on your prompt.",
@@ -89,14 +83,6 @@ export const FormProvider = ({ children }) => {
       });
       return false;
     }
-    if (!llmEngineData.temperature) {
-      showToast({
-        toastType: "error",
-        message: "Please enter the temperature before running the flow",
-        title: "Error while running the flow",
-      });
-      return false;
-    }
     return true;
   };
 
@@ -114,7 +100,7 @@ export const FormProvider = ({ children }) => {
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+            Authorization: `Bearer ${llmEngineData?.openAiKey}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -126,10 +112,13 @@ export const FormProvider = ({ children }) => {
 
       const data = await response.json();
       if (data?.error) {
+        const errorMessage = data?.error.message || "Please Check the OpenAI Key And Try Again";
+        const limitedMessage = errorMessage.split(" ").slice(0, 15).join(" ");
         showToast({
           toastType: "error",
-          message: "Please Check the OpenAI Key And Try Again",
+          message: errorMessage.split(" ").length > 15 ? `${limitedMessage}...` : errorMessage,
         });
+        
       } else {
         const res = data.choices[0]?.message?.content || "";
         setMessages((prevMessages) => [
@@ -143,7 +132,7 @@ export const FormProvider = ({ children }) => {
           ...prevHistory,
           { question: prompt, answer: res },
         ]);
-        setPrompt(""); // Clear prompt after submission
+        setPrompt("");
       }
     } catch (error) {
       console.error("Error fetching from OpenAI:", error);
@@ -158,7 +147,7 @@ export const FormProvider = ({ children }) => {
     if (checkValidation()) {
       console.log("API Credentials are valid.");
       await handleSubmit();
-    } 
+    }
   };
 
   return (
