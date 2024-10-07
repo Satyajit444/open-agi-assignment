@@ -7,7 +7,6 @@ const OpenAIComponent = () => {
   const [response, setResponse] = useState("");
 
 
-  console.log(process.env.REACT_APP_OPENAI_API_KEY);
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,9 +30,7 @@ const OpenAIComponent = () => {
     })
       .then((data) => data.json())
       .then((data) => {
-        console.log("🚀 ~ .then ~ data:", data);
         const res = data.choices[0].message.content;
-        console.log("🚀 ~ .then ~ res:", res);
         setMessages((messages) => [
           ...messages,
           {

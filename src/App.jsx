@@ -43,11 +43,9 @@ const App = () => {
       (sourceNode.type === "default" && targetNode.type === "output") // llm can connect to output
     ) {
       // Valid connection, add the edge
-      console.log("Valid Edge connected:", params);
       setEdges((eds) => addEdge(params, eds));
     } else {
       // Invalid connection, block the edge
-      console.log("Invalid Edge blocked:", params);
     }
   }, [nodes]);
   
@@ -56,7 +54,6 @@ const App = () => {
   const onDragOver = useCallback((event) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
-    console.log("Dragging over flow area");
   }, []);
 
   // onDrop to handle dropped node creation
@@ -74,7 +71,6 @@ const App = () => {
         y: event.clientY,
       });
 
-      console.log("Drop position:", position);
 
       const newNode = {
         id: getId(),

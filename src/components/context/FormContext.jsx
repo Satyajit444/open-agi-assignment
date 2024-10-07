@@ -108,12 +108,16 @@ export const FormProvider = ({ children }) => {
         });
       } else {
         const resContent = data.choices[0]?.message?.content || "";
-        console.log("🚀 ~ handleSubmit ~ resContent:", resContent);
-        setRes(resContent); 
+        setRes(resContent);
         setHistory((prevHistory) => [
           ...prevHistory,
           { question: prompt, answer: resContent },
         ]);
+        showToast({
+          toastType: "success",
+          title: "Flow Ran Successfully.",
+          messages: "Your workflow is ready to deploy",
+        });
       }
       setPrompt("");
     } catch (error) {
@@ -127,7 +131,6 @@ export const FormProvider = ({ children }) => {
 
   const handleNavButtonClick = async () => {
     if (checkValidation()) {
-      console.log("API Credentials are valid.");
       await handleSubmit();
     }
   };
