@@ -36,11 +36,12 @@ Welcome to the AI-Powered Chat Application! This is a **React-based chat applica
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/your-repo-name
-   cd your-repo-name
+   git clone git@github.com:Satyajit444/open-agi-assignment.git
+   cd open-agi-assignment
 
 Usage
 Enter a prompt: Type a question or command in the input field.
+Fill the credential: Fill your api key and other inputs
 Submit: Click the submit button to send the prompt to OpenAI.
 View response: The GPT-generated response will be displayed in the output section.
 Notifications: Error messages or status updates will be displayed as toast notifications.
@@ -49,3 +50,7 @@ Notifications: Error messages or status updates will be displayed as toast notif
 ### Things left to be publish
 
 - Code optimization for UI
+
+- Code optimization for unused lines od code.
+
+- Hooks for global use cases
