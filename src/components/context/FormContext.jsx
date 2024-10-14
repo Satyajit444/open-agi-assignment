@@ -1,13 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useToast } from "./ToastContext";
 
-// Create context
 const FormContext = createContext();
 
-// Hook to use context
 export const useFormContext = () => useContext(FormContext);
 
-// Provider component
 export const FormProvider = ({ children }) => {
   const [apiKey, setApiKey] = useState("");
   const [apiSecret, setApiSecret] = useState("");
